@@ -5,6 +5,7 @@
   "main": "bot.js",
   "author": "PhilRoli",
   "dependencies": {
+    "dateformat": "^3.0.3",
     "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
     "discord.js": "^12.4.0",
     "winston": "^3.3.3"
