@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const dateformat = require('dateformat');
 const client = new Discord.Client();
 var time = new Date();
 
@@ -16,17 +17,17 @@ client.on('ready', () => {
 	client.user.setActivity('!commands for help');
 	memberCount(client);
 
-	firstMessage(client, '700325966081425419', 'Is the Bot working?', [ '✔️', '❌' ]);
-
 	// commands
 	command(client, [ 'ping', 'test' ], (message) => {
 		message.channel.send('Pong!');
 	});
 
 	command(client, 'servers', (message) => {
-		client.guilds.cache.forEach((guild) => {
-			message.channel.send(`${guild.name} has a totel of ${guild.memberCount} Members`);
-		});
+		if (message.member.hasPermission('ADMINISTRATOR')) {
+			client.guilds.cache.forEach((guild) => {
+				message.channel.send(`${guild.name} has a totel of ${guild.memberCount} Members`);
+			});
+		}
 	});
 
 	command(client, [ 'cc', 'clearChannel' ], (message) => {
@@ -38,13 +39,55 @@ client.on('ready', () => {
 	});
 
 	command(client, 'status', (message) => {
-		const content = message.content.replace('!status ', '');
-		client.user.setPresence({
-			activity: {
-				name: content,
-				type: 0
-			}
-		});
+		if (message.member.hasPermission('ADMINISTRATOR')) {
+			const content = message.content.replace('!status ', '');
+			client.user.setPresence({
+				activity: {
+					name: content,
+					type: 0
+				}
+			});
+		}
+	});
+
+	command(client, 'serverinfo', (message) => {
+		const logo = 'https://cdn.discordapp.com/avatars/433645584696475653/a_72cbe8a7de63f0458496e2b71a947d5e.gif';
+		const creation =  message.guild.createdAt;
+
+		const embed = new Discord.MessageEmbed()
+			.setTitle(message.guild.name)
+			.setThumbnail(message.guild.iconURL())
+			.setFooter(`Server Info requested by ${message.author.tag}`, logo)
+			.setColor('#f42069')
+			.addFields(
+				{
+					name: 'Members',
+					value: message.guild.memberCount,
+					inline: true
+				},
+				{
+					name: 'Created',
+					value: dateformat(creation, "dddd, mmmm dS, yyyy, h:MM:ss"),
+					inline: true
+				},
+				{
+					name: 'Owner',
+					value: message.guild.owner,
+					inline: true
+				},
+				{
+					name: 'Region',
+					value: message.guild.region,
+					inline: true
+				},
+				{
+					name: 'Verified',
+					value: message.guild.verified,
+					inline: true
+				},
+			);
+
+		message.channel.send(embed);
 	});
 });
 
