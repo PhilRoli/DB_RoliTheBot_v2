@@ -23,23 +23,30 @@ client.on('ready', () => {
 	});
 
 	command(client, 'servers', (message) => {
-		if (message.member.hasPermission('ADMINISTRATOR')) {
+		var required = 'ADMINISTRATOR';
+		if (message.member.hasPermission(required)) {
 			client.guilds.cache.forEach((guild) => {
 				message.channel.send(`${guild.name} has a totel of ${guild.memberCount} Members`);
 			});
+		} else {
+			message.channel.send(`You are missing this permission: ${required}`);
 		}
 	});
 
 	command(client, [ 'cc', 'clearChannel' ], (message) => {
-		if (message.member.hasPermission('ADMINISTRATOR')) {
+		var required = 'ADMINISTRATOR';
+		if (message.member.hasPermission(required)) {
 			message.channel.messages.fetch().then((results) => {
 				message.channel.bulkDelete(results);
 			});
+		} else {
+			message.channel.send(`You are missing this permission: ${required}`);
 		}
 	});
 
 	command(client, 'status', (message) => {
-		if (message.member.hasPermission('ADMINISTRATOR')) {
+		var required = 'ADMINISTRATOR';
+		if (message.member.hasPermission(required)) {
 			const content = message.content.replace('!status ', '');
 			client.user.setPresence({
 				activity: {
@@ -47,12 +54,14 @@ client.on('ready', () => {
 					type: 0
 				}
 			});
+		} else {
+			message.channel.send(`You are missing this permission: ${required}`);
 		}
 	});
 
 	command(client, 'serverinfo', (message) => {
 		const logo = 'https://cdn.discordapp.com/avatars/433645584696475653/a_72cbe8a7de63f0458496e2b71a947d5e.gif';
-		const creation =  message.guild.createdAt;
+		const creation = message.guild.createdAt;
 
 		const embed = new Discord.MessageEmbed()
 			.setTitle(message.guild.name)
@@ -67,7 +76,7 @@ client.on('ready', () => {
 				},
 				{
 					name: 'Created',
-					value: dateformat(creation, "dddd, mmmm dS, yyyy, h:MM:ss"),
+					value: dateformat(creation, 'dddd, mmmm dS, yyyy, h:MM:ss'),
 					inline: true
 				},
 				{
@@ -84,7 +93,7 @@ client.on('ready', () => {
 					name: 'Verified',
 					value: message.guild.verified,
 					inline: true
-				},
+				}
 			);
 
 		message.channel.send(embed);
