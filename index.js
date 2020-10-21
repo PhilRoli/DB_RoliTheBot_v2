@@ -1,13 +1,16 @@
+require('module-alias/register');
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 var time = new Date();
 
-const config = require('./config.json');
-const loadCommands = require('./commands/load-commands');
-// const mongo = require('./mongo.js');
+const config = require('@root/config.json');
+const loadCommands = require('@root/commands/load-commands');
+const loadFeatures = require('@root/features/load-features');
+// const mongo = require('@util/mongo.js');
 
-// commands
-const memberCount = require('./autorun/member-count');
+// utils / features
+const memberCount = require('@features/member-count');
 // const { Mongoose } = require('mongoose');
 
 client.on('ready', async () => {
@@ -26,6 +29,7 @@ client.on('ready', async () => {
 	// });
 
 	loadCommands(client);
+	loadFeatures(client);
 });
 
 client.login(config.token);

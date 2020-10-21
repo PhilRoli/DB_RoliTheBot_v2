@@ -1,4 +1,4 @@
-const { prefix } = require('../config.json');
+const { prefix } = require('@root/config.json');
 var time = new Date();
 
 const vaidatePermissions = (permissions) => {
