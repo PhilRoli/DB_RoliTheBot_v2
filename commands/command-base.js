@@ -1,5 +1,5 @@
-const { connect } = require('mongoose');
 const { prefix } = require('../config.json');
+var time = new Date();
 
 const vaidatePermissions = (permissions) => {
 	const validPermissions = [
@@ -107,6 +107,8 @@ module.exports = (client, commandOptions) => {
 
 				// Handle coustom comammand code
 				callback(message, arguments, arguments.join(''));
+				console.log(`--${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}--`);
+				console.log(`${member.tag} ran ${prefix}${alias}`)
 
 				return;
 			}
