@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const dateformat = require('dateformat');
 const path = require('path');
 const fs = require('fs');
 const client = new Discord.Client();

@@ -1,3 +1,6 @@
+const Discord = require('discord.js');
+const dateformat = require('dateformat');
+
 module.exports = {
 	commands: 'serverinfo',
 	minArgs: 0,
