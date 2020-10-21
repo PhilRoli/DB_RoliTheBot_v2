@@ -6,16 +6,26 @@ var time = new Date();
 const config = require('./config.json');
 const command = require('./commands');
 const firstMessage = require('./first-message');
+const mongo = require('./mongo.js')
 
 // commands
 const memberCount = require('./member-count');
+const { Mongoose } = require('mongoose');
 
-client.on('ready', () => {
+client.on('ready', async () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 	console.log('Start at ' + time.getMinutes() + ':' + time.getSeconds());
 	console.log(' ');
 	client.user.setActivity('!commands for help');
 	memberCount(client);
+
+	await mongo().then(mongoose => {
+		try {
+			console.log('connected to mongo!')
+		} finally {
+			mongoose.connection.close()
+		}
+	})
 
 	// commands
 	command(client, [ 'ping', 'test' ], (message) => {
