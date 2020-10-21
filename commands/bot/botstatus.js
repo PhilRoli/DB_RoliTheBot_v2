@@ -1,5 +1,3 @@
-const { Message } = require('discord.js');
-
 module.exports = {
 	commands: 'status',
 	expectedArgs: '<status>',

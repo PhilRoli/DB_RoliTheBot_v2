@@ -59,14 +59,14 @@ module.exports = (client, commandOptions) => {
 		commands = [ commands ];
 	}
 
-	console.log(`Regestering command "${commands[0]}"`)
+	console.log(`Regestering command "${commands[0]}"`);
 
 	// ensure the permission are in array
 	if (permissions.length) {
 		if (typeof permissions === 'string') {
 			permissions = [ permissions ];
 		}
-		validPermissions(permissions);
+		vaidatePermissions(permissions);
 	}
 
 	// Listen for messages

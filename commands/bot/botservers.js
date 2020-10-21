@@ -1,5 +1,3 @@
-const { Message } = require('discord.js');
-
 module.exports = {
 	commands: 'servers',
 	permissionError: 'You need Admin permission to execute this command',

@@ -6,11 +6,10 @@ const client = new Discord.Client();
 var time = new Date();
 
 const config = require('./config.json');
-const command = require('./commands');
 const mongo = require('./mongo.js');
 
 // commands
-const memberCount = require('./member-count');
+const memberCount = require('./autorun/member-count');
 const { Mongoose } = require('mongoose');
 const { Cipher } = require('crypto');
 const { cli } = require('winston/lib/winston/config');

@@ -1,5 +1,3 @@
-const { Message } = require('discord.js');
-
 module.exports = {
 	commands: [ 'cc', 'clearchannel' ],
 	permissionError: 'You need Admin permission to execute this command',
