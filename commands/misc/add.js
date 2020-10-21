@@ -4,6 +4,7 @@ module.exports = {
 	permissionError: 'You need Admin permission',
 	minArgs: 2,
 	maxArgs: 2,
+	description: 'Adds two numbers',
 	callback: (message, arguments, text) => {
 		const num1 = +arguments[0]
 		const num2 = +arguments[1]

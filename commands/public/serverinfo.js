@@ -5,6 +5,7 @@ module.exports = {
 	commands: 'serverinfo',
 	minArgs: 0,
 	maxArgs: 0,
+	description: 'Replies with info about the current server',
 	callback: (message, arguments, text) => {
 		const logo = 'https://cdn.discordapp.com/avatars/433645584696475653/a_72cbe8a7de63f0458496e2b71a947d5e.gif';
 		const creation = message.guild.createdAt;

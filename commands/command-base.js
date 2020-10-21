@@ -103,6 +103,7 @@ module.exports = (client, commandOptions) => {
 				// Check for correct number of args
 				if (arguments.length < minArgs || (maxArgs !== null && arguments.length < maxArgs)) {
 					message.channel.send(`Incorrect Sytax! Use ${prefix}${alias} ${expectedArgs}`);
+					return;
 				}
 
 				// Handle coustom comammand code

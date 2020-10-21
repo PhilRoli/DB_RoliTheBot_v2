@@ -1,7 +1,7 @@
 const config = require('../config.json');
 
 module.exports = (client) => {
-	const channelID = config.panzer;
+	const channelID = config.memberchannel;
 
 	const updateMembers = (guild) => {
 		const channel = guild.channels.cache.get(channelID);
