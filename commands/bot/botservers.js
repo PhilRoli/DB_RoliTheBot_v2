@@ -4,7 +4,7 @@ module.exports = {
 	minArgs: 0,
 	maxArgs: 0,
 	callback: (message, arguments, text) => {
-		client.guilds.cache.forEach((guild) => {
+		message.guilds.cache.forEach((guild) => {
 			message.channel.send(`${guild.name} has a totel of ${guild.memberCount} Members`);
 		});
 	},

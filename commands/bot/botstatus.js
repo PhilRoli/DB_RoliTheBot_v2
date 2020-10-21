@@ -4,7 +4,7 @@ module.exports = {
 	permissionError: 'You need Admin permission to execute this Command',
 	minArgs: 1,
 	callback: (message, arguments, text) => {
-		client.user.setPresence({
+		message.user.setPresence({
 			activity: {
 				name: text,
 				type: 0
