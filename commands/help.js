@@ -36,7 +36,7 @@ module.exports = {
 			const args = command.expectedArgs ? ` ${command.expectedArgs}` : '';
 			const { description } = command;
 
-			reply += `**${mainCommand}${args}** = ${description}\n`;
+			reply += `**${prefix}${mainCommand}${args}** = ${description}\n`;
         }
         message.channel.send(reply);
 	},

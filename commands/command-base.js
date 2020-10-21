@@ -107,7 +107,7 @@ module.exports = (client, commandOptions) => {
 				}
 
 				// Handle coustom comammand code
-				callback(message, arguments, arguments.join(''));
+				callback(message, arguments, arguments.join(''), client);
 				console.log(`--${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}--`);
 				console.log(`${member} ran ${prefix}${alias}`);
 
