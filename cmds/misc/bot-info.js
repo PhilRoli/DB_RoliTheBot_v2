@@ -20,10 +20,12 @@ module.exports = class BotInfoCommand extends Commando.Command {
 			totalMembers += (await guild[1].members.fetch()).size;
 		}
 
+		console.log('Member count');
 		const embed = new MessageEmbed()
 			.setAuthor(`Information about the "${this.client.user.username}" Bot`, this.client.user.displayAvatarURL())
 			.setFooter(`Bot Info requested by ${message.author.tag}`, logo)
 			.setColor('#f42069')
+			.setDescription('Test')
 			.addFields(
 				{
 					name: 'Bot Tag',
@@ -51,6 +53,6 @@ module.exports = class BotInfoCommand extends Commando.Command {
 				}
 			);
 
-		message.channel.send(embed);
+		message.channel.send({embed: embed});
 	};
 };

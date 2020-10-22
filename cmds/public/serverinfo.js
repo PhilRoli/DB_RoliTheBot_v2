@@ -49,6 +49,6 @@ module.exports = class EmbedCommand extends Commando.Command {
 				}
 			);
 
-		message.channel.send(embed);
+		message.channel.send({embed: embed});
 	}
 };
