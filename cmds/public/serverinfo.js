@@ -1,12 +1,18 @@
+const Commando = require('discord.js-commando');
 const Discord = require('discord.js');
 const dateformat = require('dateformat');
 
-module.exports = {
-	commands: 'serverinfo',
-	minArgs: 0,
-	maxArgs: 0,
-	description: 'Replies with info about the current server',
-	callback: (message, arguments, text) => {
+module.exports = class EmbedCommand extends Commando.Command {
+	constructor(client) {
+		super(client, {
+			name: 'serverinfo',
+			group: 'public',
+			memberName: 'serverinfo',
+			description: 'Replies with Info abut the current Server',
+        });
+	}
+
+	async run(message) {
 		const logo = 'https://cdn.discordapp.com/avatars/433645584696475653/a_72cbe8a7de63f0458496e2b71a947d5e.gif';
 		const creation = message.guild.createdAt;
 
@@ -44,5 +50,5 @@ module.exports = {
 			);
 
 		message.channel.send(embed);
-	},
+	}
 };

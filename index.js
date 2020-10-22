@@ -1,11 +1,10 @@
 require('module-alias/register');
 
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const path = require('path');
+const Commando = require('discord.js-commando');
 var time = new Date();
 
 const config = require('@root/config.json');
-const loadCommands = require('@root/commands/load-commands');
 const loadFeatures = require('@root/features/load-features');
 // const mongo = require('@util/mongo.js');
 
@@ -13,12 +12,29 @@ const loadFeatures = require('@root/features/load-features');
 const memberCount = require('@features/member-count');
 // const { Mongoose } = require('mongoose');
 
+const client = new Commando.CommandoClient({
+	owner: '433645584696475653',
+	commandPrefix: config.prefix
+});
+
 client.on('ready', async () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 	console.log('Start at ' + time.getMinutes() + ':' + time.getSeconds());
 	console.log(' ');
-	client.user.setActivity('Work in Progress');
-	memberCount(client);
+
+	client.registry
+		.registerGroups([
+			[ 'misc', 'Misc' ],
+			[ 'moderation', 'Moderation' ],
+			[ 'public', 'Public' ],
+			[ 'unlisted', 'Unlisted' ]
+		])
+		.registerDefaultGroups()
+		.registerDefaultTypes({ string: true })
+		.registerDefaultCommands({ ping: false, prefix: false, eval: false, commandState: false })
+		.registerCommandsIn(path.join(__dirname, 'cmds'));
+
+	client.user.setActivity('!help for commands');
 
 	// await mongo().then((mongoose) => {
 	// 	try {
@@ -28,7 +44,6 @@ client.on('ready', async () => {
 	// 	}
 	// });
 
-	loadCommands(client);
 	loadFeatures(client);
 });
 
