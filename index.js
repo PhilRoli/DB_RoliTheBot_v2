@@ -6,6 +6,7 @@ const { MongoClient } = require('mongodb');
 const MongoDBProvider = require('commando-provider-mongo');
 var time = new Date();
 
+const mongo = require('@util/mongo');
 const config = require('@root/config.json');
 const loadFeatures = require('@root/features/load-features');
 
@@ -31,6 +32,8 @@ client.on('ready', async () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 	console.log('Start at ' + time.getMinutes() + ':' + time.getSeconds());
 	console.log(' ');
+
+	await mongo();
 
 	client.registry
 		.registerGroups([
