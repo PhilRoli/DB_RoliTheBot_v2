@@ -65,7 +65,7 @@ module.exports = class MuteCommand extends Commando.Command {
 
 		console.log('Check if user already muted');
 
-		let duration = reasons[reason] * (0 + 1);
+		let duration = reasons[reason] * (previousMutes.length + 1);
 
 		const expires = new Date();
 		expires.setHours(expires.getHours() + duration);
