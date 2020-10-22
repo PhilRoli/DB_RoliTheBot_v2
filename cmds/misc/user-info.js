@@ -50,6 +50,6 @@ module.exports = class UserInfoCommand extends Commando.Command {
 				}
 			);
 
-		message.channel.send({embed: embed});
+		message.channel.send({ embed: embed });
 	};
 };

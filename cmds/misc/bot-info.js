@@ -53,6 +53,6 @@ module.exports = class BotInfoCommand extends Commando.Command {
 				}
 			);
 
-		message.channel.send({embed: embed});
+		message.channel.send({ embed: embed });
 	};
 };
