@@ -39,7 +39,7 @@ client.on('ready', async () => {
 		.registerGroups([
 			[ 'misc', 'Misc' ],
 			[ 'moderation', 'Moderation' ],
-			[ 'public', 'Public' ],
+			[ 'info', 'Informations' ],
 			[ 'unlisted', 'Unlisted' ]
 		])
 		.registerDefaultGroups()
