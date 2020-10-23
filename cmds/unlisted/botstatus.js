@@ -17,6 +17,12 @@ module.exports = class BotStatusCommand extends Commando.Command {
 
 	async run(message, args) {
 		const status = args;
+
+		if (args === '') {
+			message.channel.send(`Correct Syntax: ${message.guild.commandPrefix}botstatus <new status>`);
+			return;
+		}
+
 		message.client.user.setPresence({
 			activity: {
 				name: status,
