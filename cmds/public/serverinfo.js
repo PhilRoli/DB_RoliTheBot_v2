@@ -2,14 +2,18 @@ const Commando = require('discord.js-commando');
 const Discord = require('discord.js');
 const dateformat = require('dateformat');
 
+var time = new Date();
+greenOutput = '\033[32m';
+resetOutput = '\u001B[0m';
+
 module.exports = class EmbedCommand extends Commando.Command {
 	constructor(client) {
 		super(client, {
 			name: 'serverinfo',
 			group: 'public',
 			memberName: 'serverinfo',
-			description: 'Replies with Info abut the current Server',
-        });
+			description: 'Replies with Info abut the current Server'
+		});
 	}
 
 	async run(message) {
@@ -50,5 +54,8 @@ module.exports = class EmbedCommand extends Commando.Command {
 			);
 
 		message.channel.send({ embed: embed });
+
+		console.log(`${greenOutput}--${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}--${resetOutput}`);
+		console.log(`${message.author.tag} used ${message.content}`);
 	}
 };

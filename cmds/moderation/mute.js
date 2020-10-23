@@ -1,6 +1,10 @@
 const Commando = require('discord.js-commando');
 const muteSchema = require('@schemas/mute-schema');
 
+var time = new Date();
+yellowOutput = '\033[33m';
+resetOutput = '\u001B[0m';
+
 const reasons = {
 	SPAMMING: 1,
 	ADVERTISING: 2
@@ -32,8 +36,6 @@ module.exports = class MuteCommand extends Commando.Command {
 			return;
 		}
 
-		console.log(target.id);
-
 		const reason = args[1].toUpperCase();
 		if (!reasons[reason]) {
 			let validReasons = '';
@@ -46,13 +48,9 @@ module.exports = class MuteCommand extends Commando.Command {
 			return;
 		}
 
-		console.log('Reason valid');
-
 		const previousMutes = await muteSchema.find({
 			userId: target.id
 		});
-
-		console.log('Found User ID');
 
 		const currentlyMuted = previousMutes.filter((mute) => {
 			return mute.current === true;
@@ -63,14 +61,10 @@ module.exports = class MuteCommand extends Commando.Command {
 			return;
 		}
 
-		console.log('Check if user already muted');
-
 		let duration = reasons[reason] * (previousMutes.length + 1);
 
 		const expires = new Date();
 		expires.setHours(expires.getHours() + duration);
-
-		console.log('got experation date');
 
 		const mutedRole = guild.roles.cache.find((role) => {
 			return role.name === 'Muted';
@@ -80,12 +74,8 @@ module.exports = class MuteCommand extends Commando.Command {
 			return;
 		}
 
-		console.log('Checked if role exists');
-
 		const targetMember = (await guild.members.fetch()).get(target.id);
 		targetMember.roles.add(mutedRole);
-
-		console.log('Added Role');
 
 		await new muteSchema({
 			userId: target.id,
@@ -97,8 +87,9 @@ module.exports = class MuteCommand extends Commando.Command {
 			current: true
 		}).save();
 
-		console.log('new schema');
-
 		message.channel.send(`You muted <@${target.id}> for "${reason}". They will be unmuted in ${duration} hours.`);
+
+		console.log(`${yellowOutput}--${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}--${resetOutput}`);
+		console.log(`${message.author.tag} used ${message.content}`);
 	};
 };

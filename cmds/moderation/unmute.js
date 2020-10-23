@@ -1,6 +1,10 @@
 const Commando = require('discord.js-commando');
 const muteSchema = require('@schemas/mute-schema');
 
+var time = new Date();
+yellowOutput = '\033[33m';
+resetOutput = '\u001B[0m';
+
 module.exports = class UnMuteCommand extends Commando.Command {
 	constructor(client) {
 		super(client, {
@@ -53,6 +57,11 @@ module.exports = class UnMuteCommand extends Commando.Command {
 			}
 
 			message.channel.send(`You unmuted <@${id}>`);
+
+			console.log(
+				`${yellowOutput}--${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}--${resetOutput}`
+			);
+			console.log(`${message.author.tag} used ${message.content}`);
 		} else {
 			message.channel.send('That user is not muted');
 		}

@@ -2,6 +2,10 @@ const Commando = require('discord.js-commando');
 const { MessageEmbed } = require('discord.js');
 const { version } = require('@root/package.json');
 
+var time = new Date();
+greenOutput = '\033[32m';
+resetOutput = '\u001B[0m';
+
 module.exports = class BotInfoCommand extends Commando.Command {
 	constructor(client) {
 		super(client, {
@@ -54,5 +58,8 @@ module.exports = class BotInfoCommand extends Commando.Command {
 			);
 
 		message.channel.send({ embed: embed });
+
+		console.log(`${greenOutput}--${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}--${resetOutput}`);
+		console.log(`${message.author.tag} used ${message.content}`);
 	};
 };

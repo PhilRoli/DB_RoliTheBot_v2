@@ -1,5 +1,9 @@
 const Commando = require('discord.js-commando');
 
+var time = new Date();
+yellowOutput = '\033[33m';
+resetOutput = '\u001B[0m';
+
 module.exports = class KickComamnd extends Commando.Command {
 	constructor(client) {
 		super(client, {
@@ -26,6 +30,11 @@ module.exports = class KickComamnd extends Commando.Command {
 		if (member.kickable) {
 			member.kick();
 			message.channel.send('The user has been kicked!');
+
+			console.log(
+				`${yellowOutput}--${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}--${resetOutput}`
+			);
+			console.log(`${message.author.tag} used ${message.content}`);
 		} else {
 			message.channel.send('I cannot kick this user');
 		}
