@@ -1,29 +1,23 @@
 const firstMessage = require('@util/first-message');
-const { rolechannel } = require('@root/config');
+const { rulechannel } = require('@root/config');
 
 module.exports = (client) => {
-	const channelId = rolechannel;
+	const channelId = rulechannel;
 
 	const getEmoji = (emojiName) => client.emojis.cache.find((emoji) => emoji.name === emojiName);
 
 	const emojis = {
 		// emoji: role
-		racoons: 'Racoons',
-		csgo: 'CSGO',
-		hoi4: 'Hearts of Iron 4',
-		arma3: 'Arma 3',
-		forza7: 'Forza 7'
+		checkmark: 'Soldat'
 	};
 
 	const reactions = [];
 
-	let emojiText = '⁣   \n**Reagiert mit dem Emoji um die Rolle zu bekommen.**\n\n';
+	let emojiText =
+		'⁣   \n**Willkommen**\n\n**Kurz die Regeln:**\n1. Stell keine scheiße an\n2. Hab zumindest etwas Hirn\n3. Beachte die Channel Topics so guts geht\n\n**Bot Vorzeichen:**\n!    <@Just some Bot#1972>\n,    <@Virtual Fisher#7036>\n+    <@Groovy#7254>\n-    <@YAGPDB.xyz#8760>\nowo  <@OwO#8456>\ns?   <@Statbot#3472>\n\nWenn du nicht sowie so schon ne Role hast, einaml unten mit :white_check_mark: reagieren, dann siehst zumindest nen teil mal.';
 	for (const key in emojis) {
 		const emoji = getEmoji(key);
 		reactions.push(emoji);
-
-		const role = emojis[key];
-		emojiText += `${emoji} = ${role}\n`;
 	}
 
 	firstMessage(client, channelId, emojiText, reactions);
