@@ -12,18 +12,24 @@ module.exports = (client) => {
 		csgo: 'CSGO',
 		hoi4: 'Hearts of Iron 4',
 		arma3: 'Arma 3',
-		forza7: 'Forza 7'
+		forza7: 'Forza 7',
+		checkmark: 'Soldat'
 	};
 
 	const reactions = [];
 
-	let emojiText = 'Add a reaction to claim a role\n\n';
+	let emojiText =
+		'\n**Reagiert mit dem Emoji um die Rolle zu bekommen.**\nUm den Rest des Servers zu sehen, reagiert mit dem ✔️\n';
 	for (const key in emojis) {
 		const emoji = getEmoji(key);
 		reactions.push(emoji);
 
 		const role = emojis[key];
-		emojiText += `${emoji} = ${role}\n`;
+		if (role === 'Soldat') {
+			emojiText += `${emoji} = Verifiziert\n\n`;
+		} else {
+			emojiText += `${emoji} = ${role}\n`;
+		}
 	}
 
 	firstMessage(client, channelId, emojiText, reactions);
