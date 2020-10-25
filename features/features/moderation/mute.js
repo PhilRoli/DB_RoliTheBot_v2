@@ -14,7 +14,6 @@ module.exports = (client) => {
 		};
 
 		const results = await muteSchema.find(conditional);
-		console.log('results:', results);
 
 		if (results && results.length) {
 			for (const result of results) {
