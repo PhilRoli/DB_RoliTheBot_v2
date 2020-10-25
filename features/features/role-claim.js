@@ -1,5 +1,5 @@
 const firstMessage = require('@util/first-message');
-const { rolechannel } = require('@root/config');
+const { rolechannel, botid } = require('@root/config');
 
 module.exports = (client) => {
 	const channelId = rolechannel;
@@ -29,7 +29,7 @@ module.exports = (client) => {
 	firstMessage(client, channelId, emojiText, reactions);
 
 	const handleReaction = (reaction, user, add) => {
-		if (user.id === '766273088836861962') {
+		if (user.id === botid) {
 			return;
 		}
 

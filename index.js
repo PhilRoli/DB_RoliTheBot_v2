@@ -21,7 +21,7 @@ const client = new Commando.CommandoClient({
 client.setProvider(
 	MongoClient.connect(config.mongoPath)
 		.then((client) => {
-			return new MongoDBProvider(client, 'bot-db');
+			return new MongoDBProvider(client, config.database);
 		})
 		.catch((err) => {
 			console.error(err);
