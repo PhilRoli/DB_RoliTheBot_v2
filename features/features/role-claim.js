@@ -3,7 +3,6 @@ const { rolechannel } = require('@root/config');
 
 module.exports = (client) => {
 	const channelId = rolechannel;
-	console.log(channelId);
 
 	const getEmoji = (emojiName) => client.emojis.cache.find((emoji) => emoji.name === emojiName);
 
