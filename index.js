@@ -40,7 +40,8 @@ client.on('ready', async () => {
 			[ 'misc', 'Misc' ],
 			[ 'moderation', 'Moderation' ],
 			[ 'info', 'Informations' ],
-			[ 'unlisted', 'Unlisted' ]
+			[ 'unlisted', 'Unlisted' ],
+			[ 'testing', 'Testing' ]
 		])
 		.registerDefaultGroups()
 		.registerDefaultTypes({ string: true })
