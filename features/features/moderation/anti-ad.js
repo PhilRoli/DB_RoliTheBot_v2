@@ -18,6 +18,10 @@ module.exports = (client) => {
 	client.on('message', async (message) => {
 		const { guild, member, content } = message;
 
+		if (message.member.hasPermission('ADMINISTRATOR')) {
+			return;
+		}
+
 		const code = content.split('discord.gg/')[1];
 		const logChannel = await client.channels.cache.get(botlog);
 
