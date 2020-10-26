@@ -50,7 +50,7 @@ module.exports = class ismutedCommand extends Commando.Command {
 			embed
 				.addField('Muted by', `<@${currentMute.staffId}>`)
 				.addField('Muted for', currentMute.reason.toLowerCase())
-				.addField('Mute expires', `${date.toLocaleString()}`);
+				.addField('Mute expires', `${date.toLocaleString()} EST`);
 		}
 
 		message.channel.send(embed);
