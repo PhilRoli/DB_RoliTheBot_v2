@@ -5,6 +5,7 @@
 	"main": "bot.js",
 	"author": "PhilRoli",
 	"dependencies": {
+		"better-discord-antispam": "^2.0.0",
 		"commando-provider-mongo": "^1.1.1",
 		"dateformat": "^3.0.3",
 		"discord.js": "^12.4.0",
