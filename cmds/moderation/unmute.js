@@ -1,5 +1,8 @@
 const Commando = require('discord.js-commando');
 const muteSchema = require('@schemas/mute-schema');
+const { MessageEmbed } = require('discord.js');
+const { botlogname } = require('@root/config');
+const dateformat = require('dateformat');
 
 var time = new Date();
 yellowOutput = '\033[33m';
@@ -62,6 +65,17 @@ module.exports = class UnMuteCommand extends Commando.Command {
 				`${yellowOutput}--${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}--${resetOutput}`
 			);
 			console.log(`${message.author.tag} used ${message.content}`);
+
+			let ReportChannel = message.guild.channels.cache.find((ch) => ch.name === botlogname);
+			let embed = new MessageEmbed()
+				.setColor('#00ff00')
+				.setAuthor(`${message.author.tag} (ID ${message.author.id})`, message.author.displayAvatarURL())
+				.setDescription(`🔊**Unmuted <@${target.id}>** (ID ${target.id})\n📄**Reason:** Manual Unmute`)
+				.setThumbnail(target.displayAvatarURL());
+			ReportChannel.send({ embed: embed });
+
+			var now = new Date();
+			console.log(`${dateformat(now, "yyyy-mm-dd' 'HH:MM:ss")} UTC > ${message.author.id} > ${message.content}`);
 		} else {
 			message.channel.send('That user is not muted');
 		}

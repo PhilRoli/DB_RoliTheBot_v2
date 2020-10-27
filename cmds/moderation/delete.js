@@ -1,8 +1,7 @@
 const Commando = require('discord.js-commando');
-
-var time = new Date();
-yellowOutput = '\033[33m';
-resetOutput = '\u001B[0m';
+const { MessageEmbed } = require('discord.js');
+const { botlogname } = require('@root/config');
+const dateformat = require('dateformat');
 
 module.exports = class DeleteCommand extends Commando.Command {
 	constructor(client) {
@@ -32,10 +31,19 @@ module.exports = class DeleteCommand extends Commando.Command {
 			message.channel.messages.fetch({ limit: times }).then((messages) => {
 				message.channel.bulkDelete(messages);
 
+				let ReportChannel = message.guild.channels.cache.find((ch) => ch.name === botlogname);
+				let embed = new MessageEmbed()
+					.setColor('#0000ff')
+					.setAuthor(`${message.author.tag} (ID ${message.author.id})`, message.author.displayAvatarURL())
+					.setDescription(
+						`🗑️**Delete <#${message.channel.id}>** (ID ${message.channel.id})\n📄**Ammount:** ${times}`
+					);
+				ReportChannel.send({ embed: embed });
+
+				var now = new Date();
 				console.log(
-					`${yellowOutput}--${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}--${resetOutput}`
+					`${dateformat(now, "yyyy-mm-dd' 'HH:MM:ss")} UTC > ${message.author.id} > ${message.content}`
 				);
-				console.log(`${message.author.tag} used ${message.content}`);
 			});
 		} else {
 			message.channel.send(`Wrong syntax. Please use: ${message.guild.commandPrefix}delete <1 - 99>`);

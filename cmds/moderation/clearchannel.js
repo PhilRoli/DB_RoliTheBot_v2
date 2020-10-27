@@ -1,8 +1,7 @@
 const Commando = require('discord.js-commando');
-
-var time = new Date();
-yellowOutput = '\033[33m';
-resetOutput = '\u001B[0m';
+const { MessageEmbed } = require('discord.js');
+const { botlogname } = require('@root/config');
+const dateformat = require('dateformat');
 
 module.exports = class ClearChannelCommand extends Commando.Command {
 	constructor(client) {
@@ -21,10 +20,17 @@ module.exports = class ClearChannelCommand extends Commando.Command {
 		message.channel.messages.fetch().then((results) => {
 			message.channel.bulkDelete(results);
 
-			console.log(
-				`${yellowOutput}--${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}--${resetOutput}`
-			);
-			console.log(`${message.author.tag} used ${message.content}`);
+			let ReportChannel = message.guild.channels.cache.find((ch) => ch.name === botlogname);
+			let embed = new MessageEmbed()
+				.setColor('#0000ff')
+				.setAuthor(`${message.author.tag} (ID ${message.author.id})`, message.author.displayAvatarURL())
+				.setDescription(
+					`🗑️**Delete <#${message.channel.id}>** (ID ${message.channel.id})\n📄**Ammount:** 100`
+				);
+			ReportChannel.send({ embed: embed });
+
+			var now = new Date();
+			console.log(`${dateformat(now, "yyyy-mm-dd' 'HH:MM:ss")} UTC > ${message.author.id} > ${message.content}`);
 		});
 	}
 };

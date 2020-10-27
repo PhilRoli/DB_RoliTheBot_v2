@@ -1,4 +1,7 @@
 const Commando = require('discord.js-commando');
+const { MessageEmbed } = require('discord.js');
+const { botlogname } = require('@root/config');
+const dateformat = require('dateformat');
 
 module.exports = class slowmodeCommand extends Commando.Command {
 	constructor(client) {
@@ -33,5 +36,18 @@ module.exports = class slowmodeCommand extends Commando.Command {
 		}
 
 		channel.setRateLimitPerUser(duration, args.join(' '));
+
+		let ReportChannel = message.guild.channels.cache.find((ch) => ch.name === botlogname);
+		let embed = new MessageEmbed()
+			.setColor('#0000ff')
+			.setAuthor(`${message.author.tag} (ID ${message.author.id})`, message.author.displayAvatarURL())
+			.setDescription(
+				`🐌**Slowmode <#${message.channel.id}>** (ID ${message.channel
+					.id})\n⏱️**Ammount:** ${duration}\n📄**Reason:** ${args.join(' ')}`
+			);
+		ReportChannel.send({ embed: embed });
+
+		var now = new Date();
+		console.log(`${dateformat(now, "yyyy-mm-dd' 'HH:MM:ss")} UTC > ${message.author.id} > ${message.content}`);
 	};
 };
