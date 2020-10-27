@@ -1,8 +1,5 @@
 const Commando = require('discord.js-commando');
-
-var time = new Date();
-greenOutput = '\033[32m';
-resetOutput = '\u001B[0m';
+const dateformat = require('dateformat');
 
 module.exports = class PingCommand extends Commando.Command {
 	constructor(client) {
@@ -21,7 +18,7 @@ module.exports = class PingCommand extends Commando.Command {
 			resultMessage.edit(`Bot latency: ${ping}ms, API latency: ${message.client.ws.ping}ms`);
 		});
 
-		console.log(`${greenOutput}--${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}--${resetOutput}`);
-		console.log(`${message.author.tag} used ${message.content}`);
+		var now2 = new Date();
+		console.log(`${dateformat(now2, "yyyy-mm-dd' 'HH:MM:ss")} UTC > ${message.author.id} > ${message.content}`);
 	}
 };

@@ -36,7 +36,7 @@ module.exports = (client) => {
 					.setColor('#00ff00')
 					.setAuthor(`${client.user.tag} (ID ${client.user.id})`, client.user.displayAvatarURL())
 					.setDescription(`🔊**Unmuted <@${member.id}>** (ID ${member.id})\n📄**Reason:** Mute Expired`)
-					.setThumbnail(member.displayAvatarURL());
+					.setThumbnail(member.user.displayAvatarURL());
 				ReportChannel.send({ embed: embed });
 
 				var now = new Date();

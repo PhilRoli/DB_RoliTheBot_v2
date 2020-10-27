@@ -4,9 +4,6 @@ const { MessageEmbed } = require('discord.js');
 const { botlogname } = require('@root/config');
 const dateformat = require('dateformat');
 
-yellowOutput = '\033[33m';
-resetOutput = '\u001B[0m';
-
 const reasons = {
 	SPAMMING: 1,
 	ADVERTISING: 2

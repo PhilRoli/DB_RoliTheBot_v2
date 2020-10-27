@@ -1,8 +1,5 @@
 const Commando = require('discord.js-commando');
-
-var time = new Date();
-yellowOutput = '\033[33m';
-resetOutput = '\u001B[0m';
+const dateformat = require('dateformat');
 
 module.exports = class BotStatusCommand extends Commando.Command {
 	constructor(client) {
@@ -31,7 +28,7 @@ module.exports = class BotStatusCommand extends Commando.Command {
 		});
 		message.channel.send(`Set the Bot's status to ${status}`);
 
-		console.log(`${yellowOutput}--${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}--${resetOutput}`);
-		console.log(`${message.author.tag} used ${message.content}`);
+		var now2 = new Date();
+		console.log(`${dateformat(now2, "yyyy-mm-dd' 'HH:MM:ss")} UTC > ${message.author.id} > ${message.content}`);
 	}
 };
