@@ -7,11 +7,11 @@ module.exports = (client) => {
 	const checkMutes = async () => {
 		console.log('\033[0;36mCHECKING MUTE DATA \033[0m');
 
-		const now = new Date();
+		const current = new Date();
 
 		const conditional = {
 			expires: {
-				$lt: now
+				$lt: current
 			},
 			current: true
 		};
@@ -31,7 +31,7 @@ module.exports = (client) => {
 
 				member.roles.remove(mutedRole);
 
-				let ReportChannel = message.guild.channels.cache.find((ch) => ch.name === botlogname);
+				let ReportChannel = guild.channels.cache.find((ch) => ch.name === botlogname);
 				let embed = new MessageEmbed()
 					.setColor('#00ff00')
 					.setAuthor(`${client.user.tag} (ID ${client.user.id})`, client.user.displayAvatarURL())
@@ -69,19 +69,19 @@ module.exports = (client) => {
 			if (role) {
 				member.roles.add(role);
 
-				let ReportChannel = message.guild.channels.cache.find((ch) => ch.name === botlogname);
+				let ReportChannel = guild.channels.cache.find((ch) => ch.name === botlogname);
 				let embed = new MessageEmbed()
 					.setColor('#ff0000')
 					.setAuthor(`${client.user.tag} (ID ${client.user.id})`, client.user.displayAvatarURL())
 					.setDescription(
 						`🔇**Muted <@${member.id}>** (ID ${member.id})\n📄**Reason:** Rejoined while still muted`
 					)
-					.setThumbnail(member.displayAvatarURL());
+					.setThumbnail(member.user.displayAvatarURL());
 				ReportChannel.send({ embed: embed });
 
-				var now = new Date();
+				var now2 = new Date();
 				console.log(
-					`${dateformat(now, "yyyy-mm-dd' 'HH:MM:ss")} UTC > ${member.id} > Rejoined while still muted`
+					`${dateformat(now2, "yyyy-mm-dd' 'HH:MM:ss")} UTC > ${member.id} > Rejoined while still muted`
 				);
 			}
 		}
