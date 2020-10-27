@@ -4,10 +4,6 @@ const { MessageEmbed } = require('discord.js');
 const { botlogname } = require('@root/config');
 const dateformat = require('dateformat');
 
-var time = new Date();
-yellowOutput = '\033[33m';
-resetOutput = '\u001B[0m';
-
 module.exports = class UnMuteCommand extends Commando.Command {
 	constructor(client) {
 		super(client, {
@@ -60,11 +56,6 @@ module.exports = class UnMuteCommand extends Commando.Command {
 			}
 
 			message.channel.send(`You unmuted <@${id}>`);
-
-			console.log(
-				`${yellowOutput}--${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}--${resetOutput}`
-			);
-			console.log(`${message.author.tag} used ${message.content}`);
 
 			let ReportChannel = message.guild.channels.cache.find((ch) => ch.name === botlogname);
 			let embed = new MessageEmbed()
