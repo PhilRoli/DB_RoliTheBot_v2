@@ -14,7 +14,7 @@ module.exports = (client) => {
 	const reactions = [];
 
 	let emojiText =
-		'⁣   \n**Willkommen**\n\n**Kurz die Regeln:**\n1. Stell keine scheiße an\n2. Hab zumindest etwas Hirn\n3. Beachte die Channel Topics so guts geht\n\n**Bot Vorzeichen:**\n!    <@Just some Bot#1972>\n,    <@Virtual Fisher#7036>\n+    <@Groovy#7254>\n-    <@YAGPDB.xyz#8760>\nowo  <@OwO#8456>\ns?   <@Statbot#3472>\n\nWenn du nicht sowie so schon ne Role hast, einaml unten mit :white_check_mark: reagieren, dann siehst zumindest nen teil mal.';
+		'⁣   \n**Willkommen**\n\n**Kurz die Regeln:**\n> 1. Stell keine scheiße an\n> 2. Hab zumindest etwas Hirn\n> 3. Beachte die Channel Topics so guts geht\n\n**Bot Vorzeichen:**\n> !         <@766273088836861962>\n> ,         <@574652751745777665>\n> +        <@234395307759108106>\n> -        <@204255221017214977>\n> owo  <@408785106942164992>\n> s?      <@491769129318088714>\n\nWenn du nicht sowie so schon ne Role hast, einaml unten mit :white_check_mark: reagieren, dann siehst zumindest nen teil mal.';
 	for (const key in emojis) {
 		const emoji = getEmoji(key);
 		reactions.push(emoji);
