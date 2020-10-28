@@ -61,7 +61,7 @@ module.exports = class UnMuteCommand extends Commando.Command {
 			let embed = new MessageEmbed()
 				.setColor('#00ff00')
 				.setAuthor(`${message.author.tag} (ID ${message.author.id})`, message.author.displayAvatarURL())
-				.setDescription(`🔊**Unmuted <@${target.id}>** (ID ${target.id})\n📄**Reason:** Manual Unmute`)
+				.setDescription(`🔊**Unmuted <@${id}>** (ID ${id})\n📄**Reason:** Manual Unmute`)
 				.setThumbnail(target.displayAvatarURL());
 			ReportChannel.send({ embed: embed });
 
