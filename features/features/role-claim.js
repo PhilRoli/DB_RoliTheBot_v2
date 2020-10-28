@@ -12,7 +12,11 @@ module.exports = (client) => {
 		csgo: 'CSGO',
 		hoi4: 'Hearts of Iron 4',
 		arma3: 'Arma 3',
-		forza7: 'Forza 7'
+		forza7: 'Forza Motorsport',
+		aoe: 'Age of Empires',
+		amongus: 'Among Us',
+		gmod: 'Garrys Mod',
+		gta5: 'GTA 5'
 	};
 
 	const reactions = [];
