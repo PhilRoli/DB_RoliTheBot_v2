@@ -27,6 +27,11 @@ module.exports = class ismutedCommand extends Commando.Command {
 
 		const id = args[0];
 
+		if (id.charAt(0) === '!') {
+			message.channel.send(`Correct syntax: ${guild.commandPrefix}ismuted <User ID>`);
+			return;
+		}
+
 		const members = await guild.members.fetch();
 		const target = members.get(id);
 		const isInDiscord = !!target;
