@@ -19,8 +19,10 @@ module.exports = class UnMuteCommand extends Commando.Command {
 	run = async (message, args) => {
 		const { guild } = message;
 
-		if (args.length !== 1) {
-			message.channel.send(`Please use the corecct syntax: ${guild.commandPrefix}mute <Target @ or ID>`);
+		if (args.length < 1) {
+			message.channel.send(
+				`Please use the corecct syntax: ${guild.commandPrefix}mute <Target @ or ID> <optional: reason>`
+			);
 			return;
 		}
 
@@ -45,6 +47,8 @@ module.exports = class UnMuteCommand extends Commando.Command {
 			}
 		);
 
+		args.shift();
+
 		if (result.nModified === 1) {
 			const mutedRole = guild.roles.cache.find((role) => {
 				return role.name === 'Muted';
@@ -61,7 +65,7 @@ module.exports = class UnMuteCommand extends Commando.Command {
 			let embed = new MessageEmbed()
 				.setColor('#00ff00')
 				.setAuthor(`${message.author.tag} (ID ${message.author.id})`, message.author.displayAvatarURL())
-				.setDescription(`🔊**Unmuted <@${id}>** (ID ${id})\n📄**Reason:** Manual Unmute`)
+				.setDescription(`🔊**Unmuted <@${id}>** (ID ${id})\n📄**Reason:** ${args.join(' ') || 'Manual Unmute'}`)
 				.setThumbnail(target.displayAvatarURL());
 			ReportChannel.send({ embed: embed });
 
