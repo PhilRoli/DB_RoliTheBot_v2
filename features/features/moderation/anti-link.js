@@ -20,6 +20,10 @@ module.exports = (client) => {
 	client.on('message', async (message) => {
 		const { guild, member, content } = message;
 
+		if (!guild) {
+			return;
+		}
+
 		if (message.member.hasPermission('ADMINISTRATOR')) {
 			return;
 		}
