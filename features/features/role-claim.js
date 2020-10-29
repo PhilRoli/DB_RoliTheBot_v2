@@ -21,7 +21,7 @@ module.exports = (client) => {
 
 	const reactions = [];
 
-	let emojiText = '⁣   \n**Reagiert mit dem Emoji um die Rolle zu bekommen.**\n\n';
+	let emojiText = '⁣   \n**React with the Emoji to get the Roles.**\n\n';
 	for (const key in emojis) {
 		const emoji = getEmoji(key);
 		reactions.push(emoji);

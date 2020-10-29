@@ -13,8 +13,21 @@ module.exports = (client) => {
 
 	const reactions = [];
 
-	let emojiText =
-		'⁣   \n**Willkommen**\n\n**Kurz die Regeln:**\n> 1. Stell keine scheiße an\n> 2. Hab zumindest etwas Hirn\n> 3. Beachte die Channel Topics so guts geht\n\n**Bot Vorzeichen:**\n> !         <@766273088836861962>\n> ,         <@574652751745777665>\n> +        <@234395307759108106>\n> -        <@204255221017214977>\n> owo  <@408785106942164992>\n> s?      <@491769129318088714>\n\nWenn du nicht sowie so schon ne Role hast, einaml unten mit :white_check_mark: reagieren, dann siehst zumindest nen teil mal.';
+	let emojiText = [
+		'⁣   \n**Welcome**\n\n',
+		'**Short Rules:**\n',
+		'> 1.  Dont do anything Stupid\n',
+		'> 2.  Have at least some part of a Brain\n',
+		'> 3.  Mind the Channel Topics as good as possible\n\n',
+		'**Bot Prefixes:**\n',
+		'> !         <@766273088836861962>\n',
+		'> ,         <@574652751745777665>\n',
+		'> +        <@234395307759108106>\n',
+		'> -        <@204255221017214977>\n',
+		'> owo  <@408785106942164992>\n',
+		'> s?      <@491769129318088714>\n\n',
+		'If you dont already have a role, react with the :white_check_mark: to get more acces to the server.'
+	];
 	for (const key in emojis) {
 		const emoji = getEmoji(key);
 		reactions.push(emoji);
