@@ -26,7 +26,6 @@ module.exports = class BotInfoCommand extends Commando.Command {
 			.setAuthor(`Information about the "${this.client.user.username}" Bot`, this.client.user.displayAvatarURL())
 			.setFooter(`Bot Info requested by ${message.author.tag}`, logo)
 			.setColor('#f42069')
-			.setDescription('Test')
 			.addFields(
 				{
 					name: 'Bot Tag',
