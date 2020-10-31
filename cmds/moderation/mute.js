@@ -92,9 +92,12 @@ module.exports = class MuteCommand extends Commando.Command {
 		let embed = new MessageEmbed()
 			.setColor('#ff0000')
 			.setAuthor(`${staff.tag} (ID ${staff.id})`, staff.displayAvatarURL())
-			.setDescription(`🔇**Muted <@${target.id}>** (ID ${target.id})\n📄**Reason:** ${reason}`)
+			.setDescription(
+				`🔇**Muted <@${target.id}>** (ID ${target.id})\n📄**Reason:** ${reason}\n⏱️**Duration:** ${duration} h`
+			)
 			.setThumbnail(target.displayAvatarURL());
 		ReportChannel.send({ embed: embed });
+		target.send({ embed: embed });
 
 		var now = new Date();
 		console.log(`${dateformat(now, "yyyy-mm-dd' 'HH:MM:ss")} UTC > ${message.author.id} > ${message.content}`);

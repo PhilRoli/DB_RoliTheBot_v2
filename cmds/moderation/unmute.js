@@ -68,6 +68,7 @@ module.exports = class UnMuteCommand extends Commando.Command {
 				.setDescription(`🔊**Unmuted <@${id}>** (ID ${id})\n📄**Reason:** ${args.join(' ') || 'Manual Unmute'}`)
 				.setThumbnail(target.displayAvatarURL());
 			ReportChannel.send({ embed: embed });
+			target.send({ embed: embed });
 
 			var now = new Date();
 			console.log(`${dateformat(now, "yyyy-mm-dd' 'HH:MM:ss")} UTC > ${message.author.id} > ${message.content}`);
