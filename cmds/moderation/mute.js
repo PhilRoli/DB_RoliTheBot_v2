@@ -29,6 +29,8 @@ module.exports = class MuteCommand extends Commando.Command {
 			return;
 		}
 
+		//! only get id
+		//! targetMember ersetzt alle targets die nicht ID sind
 		const target = message.mentions.users.first();
 		if (!target) {
 			message.channel.send('Please specify someone to mute');
