@@ -17,6 +17,7 @@ module.exports = (client) => {
 		amongus: 'Among Us',
 		gmod: 'Garrys Mod',
 		gta5: 'GTA 5',
+		minecraft: 'Minecraft',
 		payday2: 'PayDay 2'
 	};
 
