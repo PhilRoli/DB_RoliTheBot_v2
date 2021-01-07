@@ -16,7 +16,8 @@ module.exports = (client) => {
 		aoe: 'Age of Empires',
 		amongus: 'Among Us',
 		gmod: 'Garrys Mod',
-		gta5: 'GTA 5'
+		gta5: 'GTA 5',
+		payday2: 'PayDay 2'
 	};
 
 	const reactions = [];
