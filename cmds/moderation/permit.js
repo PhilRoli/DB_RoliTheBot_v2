@@ -39,6 +39,9 @@ module.exports = class PermitCommand extends Commando.Command {
 		const targetMember = (await guild.members.fetch()).get(id);
 		targetMember.roles.add(permitRole);
 
+		var now2 = new Date();
+		console.log(`${dateformat(now2, "yyyy-mm-dd' 'HH:MM:ss")} UTC > ${message.author.id} > ${message.content}`);
+
 		setTimeout(function() {
 			targetMember.roles.remove(permitRole);
 		}, 60000);
